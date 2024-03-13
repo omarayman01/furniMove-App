@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/features/end_user/admin/account/views/admin_account_screen.dart';
 import 'package:furni_move/view/features/end_user/admin/end_users/views/end_users_screen.dart';
 import 'package:furni_move/view/features/end_user/admin/reports/views/reports_screen.dart';
@@ -16,31 +17,30 @@ class BaseScreen extends StatefulWidget {
   State<BaseScreen> createState() => _BaseScreenState();
 }
 
+List<Widget> clientTabs = [
+  HomeScreen(user: user),
+  ClientActivityScreen(user: user),
+  ClientAccountScreen(user: user)
+];
+List<Widget> serviceProviderTabs = [
+  RequestsScreen(user: user),
+  ProviderActivityScreen(user: user),
+  ProviderAccountScreen(user: user)
+];
+List<Widget> adminTabs = [
+  ReportsScreen(user: user),
+  EndUsersScreen(user: user),
+  AdminAccountScreen(user: user)
+];
+late UserModel user;
+int selectedIndex = 0;
+
 class _BaseScreenState extends State<BaseScreen> {
-  List<Widget> clientTabs = const [
-    HomeScreen(),
-    ClientActivityScreen(),
-    ClientAccountScreen()
-  ];
-  List<Widget> serviceProviderTabs = const [
-    RequestsScreen(),
-    ProviderActivityScreen(),
-    ProviderAccountScreen()
-  ];
-  List<Widget> adminTabs = const [
-    ReportsScreen(),
-    EndUsersScreen(),
-    AdminAccountScreen()
-  ];
-
-  int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    final dynamic args = ModalRoute.of(context)?.settings.arguments;
-
+    user = ModalRoute.of(context)?.settings.arguments as UserModel;
     return Scaffold(
-      body: displaybody(args)[selectedIndex],
+      body: displaybody(user.role)[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedIndex,
           onTap: (index) {
@@ -48,28 +48,30 @@ class _BaseScreenState extends State<BaseScreen> {
             setState(() {});
           },
           type: BottomNavigationBarType.fixed,
-          items: displaynav(args)),
+          items: displaynav(user.role)),
     );
   }
 
   dynamic displaynav(String value) {
-    if (value == 'client') {
+    if (value == 'Client') {
       return client;
-    } else if (value == 'service provider') {
+    } else if (value == 'Service provider') {
       return serviceProvider;
-    } else if (value == 'admin') {
+    } else if (value == 'Admin') {
       return admin;
     }
+    setState(() {});
   }
 
   dynamic displaybody(String value) {
-    if (value == 'client') {
+    if (value == 'Client') {
       return clientTabs;
-    } else if (value == 'service provider') {
+    } else if (value == 'Service provider') {
       return serviceProviderTabs;
-    } else if (value == 'admin') {
+    } else if (value == 'Admin') {
       return adminTabs;
     }
+    setState(() {});
   }
 }
 

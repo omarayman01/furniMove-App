@@ -49,7 +49,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacementNamed(
                         context, Routes.loginRoute,
-                        arguments: 'client'),
+                        arguments: 'Client'),
                     child: ContainerChoice(
                         img: 'assets/images/moving_client.png',
                         txt1: 'As client',
@@ -72,7 +72,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacementNamed(
                         context, Routes.loginRoute,
-                        arguments: 'service provider'),
+                        arguments: 'Service provider'),
                     child: ContainerChoice(
                         img: 'assets/images/delivery-boy.png',
                         txt1: 'As service provider',
@@ -95,7 +95,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacementNamed(
                         context, Routes.loginRoute,
-                        arguments: 'admin'),
+                        arguments: 'Admin'),
                     child: ContainerChoice(
                         img: 'assets/images/admin.png',
                         txt1: 'As admin',

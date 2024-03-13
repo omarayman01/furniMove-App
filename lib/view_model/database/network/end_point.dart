@@ -1,9 +1,6 @@
 class EndPoints {
-  static const String baseUrl = 'https://www.googleapis.com/books/v1';
-  static const String newestBooksEndpoint =
-      '/volumes?Filtering=free-ebooks&q=subject:Computers&sorting=newest';
-  static const String featuredBooksEndpoint =
-      '/volumes?Filtering=free-ebooks&q=subject:Computer Science';
-  static const String similarBooks =
-      '/volumes?Filtering=free-ebooks&q=subject:programming';
+  static const String baseUrl =
+      'https://furnimove20240301161609.azurewebsites.net';
+  static const String login = '/api/Account/login';
+  static const String getAllMoveRequests = '/api/Admin/GetAllMoveRequests';
 }

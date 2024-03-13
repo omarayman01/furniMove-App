@@ -15,8 +15,10 @@ import 'package:furni_move/view/features/registration/views/login_screen.dart';
 import 'package:furni_move/view/features/registration/views/signup_screen.dart';
 import 'package:furni_move/view/features/registration/views/welcome_screen.dart';
 import 'package:furni_move/view/features/splash_screen.dart';
+import 'package:furni_move/view_model/database/network/dio_helper.dart';
 
 void main() {
+  DioHelper.init();
   runApp(const MyApp());
 }
 
@@ -33,16 +35,16 @@ class MyApp extends StatelessWidget {
         Routes.loginRoute: (context) => const LoginScreen(),
         Routes.signUpRoute: (context) => const SignUpScreen(),
         Routes.baseRoute: (context) => const BaseScreen(),
-        Routes.homeRoute: (context) => const HomeScreen(),
-        Routes.clientActivityRoute: (context) => const ClientActivityScreen(),
-        Routes.clientAccountRoute: (context) => const ClientAccountScreen(),
-        Routes.adminAccountRoute: (context) => const AdminAccountScreen(),
-        Routes.adminEndUsersRoute: (context) => const EndUsersScreen(),
-        Routes.adminReportsRoute: (context) => const ReportsScreen(),
-        Routes.providerAccountRoute: (context) => const ProviderAccountScreen(),
-        Routes.providerActivityRoute: (context) =>
-            const ProviderActivityScreen(),
-        Routes.providerRequestsRoute: (context) => const RequestsScreen(),
+        // Routes.homeRoute: (context) => const HomeScreen(),
+        // Routes.clientActivityRoute: (context) => const ClientActivityScreen(),
+        // Routes.clientAccountRoute: (context) => const ClientAccountScreen(),
+        // Routes.adminAccountRoute: (context) => const AdminAccountScreen(),
+        // Routes.adminEndUsersRoute: (context) => const EndUsersScreen(),
+        // Routes.adminReportsRoute: (context) => const ReportsScreen(),
+        // Routes.providerAccountRoute: (context) => const ProviderAccountScreen(),
+        // Routes.providerActivityRoute: (context) =>
+        //     const ProviderActivityScreen(),
+        // Routes.providerRequestsRoute: (context) => const RequestsScreen(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashRoute,

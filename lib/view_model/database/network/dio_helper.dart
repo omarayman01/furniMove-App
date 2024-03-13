@@ -1,13 +1,67 @@
-// import 'package:bookly_app/view_model/database/network/end_point.dart';
-// import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:furni_move/view_model/database/network/end_point.dart';
 
-// class DioHelper {
-//   final Dio dio;
+class DioHelper {
+  static late Dio dio;
 
-//   DioHelper(this.dio);
-//   Future<Map<String, dynamic>> get({required String endPoint}) async {
-//     var respose = await dio.get('${EndPoints.baseUrl}$endPoint');
+  static init() {
+    dio = Dio(
+      BaseOptions(baseUrl: EndPoints.baseUrl, headers: {
+        'Accept': 'application/json',
+      }),
+    );
+  }
 
-//     return respose.data;
-//   }
-// }
+  static Future<Response> getData({
+    required String endPoint,
+    Map<String, dynamic>? queryParameters,
+    String? token,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      dio.options.headers = {};
+      final Response response = await dio.get(
+        endPoint,
+        queryParameters: queryParameters,
+        onReceiveProgress: onReceiveProgress,
+      );
+      debugPrint(
+          'Get DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      debugPrint(response.data.toString());
+      return response.data;
+    } catch (e) {
+      debugPrint(
+          'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
+      rethrow;
+    }
+  }
+
+  static Future<Response> postData({
+    required String endPoint,
+    Map<String, dynamic>? queryParameters,
+    required Map<String, dynamic> data,
+    String? token,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      dio.options.headers = {};
+      final Response response = await dio.post(
+        endPoint,
+        data: data,
+        queryParameters: queryParameters,
+        onReceiveProgress: onReceiveProgress,
+      );
+      debugPrint(
+          'post DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // debugPrint(response.data.toString());
+      return response;
+    } catch (e) {
+      debugPrint(
+          'post ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+}

@@ -7,6 +7,8 @@ class CustomTextFormField extends StatelessWidget {
       required this.labelText,
       this.onChanged,
       this.controller,
+      this.isPassword,
+      this.suffixIcon,
       this.keyboardType,
       this.validator,
       required this.radius});
@@ -14,6 +16,8 @@ class CustomTextFormField extends StatelessWidget {
   final double radius;
   final String labelText;
   final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final bool? isPassword;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   @override
@@ -25,6 +29,8 @@ class CustomTextFormField extends StatelessWidget {
             .textTheme
             .bodyMedium!
             .copyWith(color: AppTheme.blackText),
+        obscureText: isPassword ?? false,
+        obscuringCharacter: '*',
         controller: controller,
         onChanged: onChanged,
         keyboardType: keyboardType,
@@ -35,6 +41,7 @@ class CustomTextFormField extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
             labelText: labelText,
+            suffixIcon: suffixIcon,
             fillColor: AppTheme.lightGrey.withOpacity(0.15),
             filled: true,
             labelStyle: Theme.of(context)

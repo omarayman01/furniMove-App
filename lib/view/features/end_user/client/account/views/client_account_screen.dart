@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/constants/routes.dart';
 import 'package:furni_move/view/core/custom_widgets/custom_button.dart';
 
 class ClientAccountScreen extends StatelessWidget {
-  const ClientAccountScreen({super.key});
+  const ClientAccountScreen({super.key, required this.user});
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
