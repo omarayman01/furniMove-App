@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:furni_move/model/user_model.dart';
 
-class ClientActivityScreen extends StatelessWidget {
-  const ClientActivityScreen({super.key, required this.user});
+class CustomerActivityScreen extends StatelessWidget {
+  const CustomerActivityScreen({super.key, required this.user});
   final UserModel user;
 
   @override

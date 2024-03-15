@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:furni_move/model/user_model.dart';
+import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
+import 'package:furni_move/view/core/custom_widgets/logo_column.dart';
+import 'package:furni_move/view/features/end_user/admin/end_users/widgets/listview_endusers.dart';
 
 class EndUsersScreen extends StatelessWidget {
   const EndUsersScreen({
@@ -10,10 +13,23 @@ class EndUsersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('End Users'),
-      ),
+    return Column(
+      children: [
+        const LogoColumn(),
+        Expanded(
+          child: ContainedTabBarView(
+            tabs: const [
+              Text('Customers'),
+              Text('Service Providers'),
+            ],
+            views: const [
+              ListViewEndUsers(),
+              ListViewEndUsers(),
+            ],
+            // onChange: (index) => print(index),
+          ),
+        ),
+      ],
     );
   }
 }

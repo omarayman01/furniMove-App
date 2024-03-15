@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:furni_move/view/constants/app_theme.dart';
 
 class Avatar extends StatelessWidget {
   final double height, width;
-  final String url;
+  final String? url;
   final Color backColor;
 
   const Avatar(
       {super.key,
-      this.height = 28,
-      this.width = 28,
+      this.height = 72,
+      this.width = 72,
       required this.backColor,
-      required this.url});
+      this.url});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +21,14 @@ class Avatar extends StatelessWidget {
         shape: BoxShape.circle,
         color: backColor,
       ),
-      child: ClipOval(child: Image.network(url, fit: BoxFit.cover)),
+      child: url == null
+          ? ClipOval(
+              child: Icon(
+              Icons.person,
+              color: AppTheme.white,
+              size: 45,
+            ))
+          : ClipOval(child: Image.network(url!, fit: BoxFit.cover)),
     );
   }
 }

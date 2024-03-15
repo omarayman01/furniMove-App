@@ -7,15 +7,14 @@ import 'package:furni_move/view/core/custom_widgets/user_activity_stats.dart';
 import 'package:furni_move/view/core/custom_widgets/user_confirmation.dart';
 import 'package:furni_move/view/core/custom_widgets/user_profile.dart';
 
-class ProviderAccountScreen extends StatelessWidget {
-  const ProviderAccountScreen({super.key, required this.user});
+class CustomerAccountScreen extends StatelessWidget {
+  const CustomerAccountScreen({super.key, required this.user});
   final UserModel user;
 
   @override
   Widget build(BuildContext context) {
     // Map<String, dynamic> decodedToken = JwtDecoder.decode(user.token);
     // DateTime expirationDate = JwtDecoder.getExpirationDate(user.token);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Account'),
@@ -41,7 +40,7 @@ class ProviderAccountScreen extends StatelessWidget {
                 child: Text('User Activity Stats',
                     style: Theme.of(context).textTheme.headlineLarge)),
             const SizedBox(height: 28),
-            const UserActivityStats(text: 'Services offered', num: 0),
+            const UserActivityStats(text: 'Services received', num: 0),
             const SizedBox(height: 28),
             Divider(thickness: 4, color: AppTheme.dividerGrey),
             const SizedBox(height: 28),

@@ -4,17 +4,19 @@ import 'package:furni_move/view/constants/app_theme.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {super.key,
-      required this.labelText,
+      this.labelText,
       this.onChanged,
       this.controller,
       this.isPassword,
       this.suffixIcon,
       this.keyboardType,
       this.validator,
-      required this.radius});
+      required this.radius,
+      this.hintText});
   final TextInputType? keyboardType;
   final double radius;
-  final String labelText;
+  final String? labelText;
+  final String? hintText;
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final bool? isPassword;
@@ -41,9 +43,14 @@ class CustomTextFormField extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
             labelText: labelText,
+            hintText: hintText,
             suffixIcon: suffixIcon,
             fillColor: AppTheme.lightGrey.withOpacity(0.15),
             filled: true,
+            hintStyle: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: AppTheme.blackText),
             labelStyle: Theme.of(context)
                 .textTheme
                 .bodyMedium!

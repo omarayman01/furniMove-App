@@ -9,7 +9,8 @@ class AppTheme {
   static Color lightGrey = const Color(0xff99999B);
   static Color dividerGrey = const Color(0xffE0E0E0);
   static Color dividerblack = const Color(0xff505050);
-  static Color red = const Color(0xff6CFA6B);
+  static Color green = const Color(0xff6CFA6B);
+  static Color red = const Color(0xffE44235);
 
   static ThemeData lightTheme = ThemeData(
     textTheme: TextTheme(

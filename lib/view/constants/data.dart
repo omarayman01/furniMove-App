@@ -5,6 +5,8 @@ String validationEmail =
 String validationPassword =
     r'(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$';
 //  password with 8+ characters, including uppercase, lowercase, numbers, and special characters like @#$%^&+!=
+String validationPassword2 = r'^(?=.*\d).{8,}$';
+//password that must be at least 8 characters long, containing at least one alphabetical character and at least one digit
 String validatePasswordUpperCase = r'[A-Z]';
 String validatePasswordLowerCase = r'[a-z]';
 String validatePasswordDigits = r'[0-9]';

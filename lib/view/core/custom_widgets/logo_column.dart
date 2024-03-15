@@ -21,7 +21,7 @@ class LogoColumn extends StatelessWidget {
           Image(
             image: AssetImage(MyAssets.logo),
             width: 150,
-            height: 90,
+            height: 80,
           ),
           Expanded(
             child: Divider(

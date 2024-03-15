@@ -3,9 +3,9 @@ import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/features/end_user/admin/account/views/admin_account_screen.dart';
 import 'package:furni_move/view/features/end_user/admin/end_users/views/end_users_screen.dart';
 import 'package:furni_move/view/features/end_user/admin/reports/views/reports_screen.dart';
-import 'package:furni_move/view/features/end_user/client/account/views/client_account_screen.dart';
-import 'package:furni_move/view/features/end_user/client/activity/views/client_activity_screen.dart';
-import 'package:furni_move/view/features/end_user/client/home/views/home_screen.dart';
+import 'package:furni_move/view/features/end_user/customer/account/views/customer_account_screen.dart';
+import 'package:furni_move/view/features/end_user/customer/activity/views/customer_activity_screen.dart';
+import 'package:furni_move/view/features/end_user/customer/home/views/customer_home_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/account/views/provider_account_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/activity/views/provider_activity_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/requests/views/provider_request_screen.dart';
@@ -17,10 +17,10 @@ class BaseScreen extends StatefulWidget {
   State<BaseScreen> createState() => _BaseScreenState();
 }
 
-List<Widget> clientTabs = [
-  HomeScreen(user: user),
-  ClientActivityScreen(user: user),
-  ClientAccountScreen(user: user)
+List<Widget> customerTabs = [
+  CustomerHomeScreen(user: user),
+  CustomerActivityScreen(user: user),
+  CustomerAccountScreen(user: user)
 ];
 List<Widget> serviceProviderTabs = [
   RequestsScreen(user: user),
@@ -39,6 +39,7 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     user = ModalRoute.of(context)?.settings.arguments as UserModel;
+
     return Scaffold(
       body: displaybody(user.role)[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -53,9 +54,9 @@ class _BaseScreenState extends State<BaseScreen> {
   }
 
   dynamic displaynav(String value) {
-    if (value == 'Client') {
+    if (value == 'Customer') {
       return client;
-    } else if (value == 'Service provider') {
+    } else if (value == 'ServiceProvider') {
       return serviceProvider;
     } else if (value == 'Admin') {
       return admin;
@@ -64,9 +65,9 @@ class _BaseScreenState extends State<BaseScreen> {
   }
 
   dynamic displaybody(String value) {
-    if (value == 'Client') {
-      return clientTabs;
-    } else if (value == 'Service provider') {
+    if (value == 'Customer') {
+      return customerTabs;
+    } else if (value == 'ServiceProvider') {
       return serviceProviderTabs;
     } else if (value == 'Admin') {
       return adminTabs;

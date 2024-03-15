@@ -1,5 +1,6 @@
 class UserModel {
-  String userName, email, token, role, phoneNumber, id;
+  String userName, email, token, role, id;
+  String? phoneNumber;
   UserModel(
       {required this.userName,
       required this.email,
