@@ -32,6 +32,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         children: [
           const SizedBox(height: 30),
           const LogoColumn(),
+          Align(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                },
+                icon: const Icon(Icons.arrow_back)),
+          ),
           const SizedBox(height: 10),
           Text('How do you want to use FurniMove today?',
               style: Theme.of(context).textTheme.headlineLarge,
@@ -48,7 +56,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   onEnd: () {},
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacementNamed(
-                        context, Routes.loginRoute,
+                        context, Routes.signUpRoute,
                         arguments: 'Customer'),
                     child: ContainerChoice(
                         img: 'assets/images/moving_client.png',
@@ -71,7 +79,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   onEnd: () {},
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacementNamed(
-                        context, Routes.loginRoute,
+                        context, Routes.signUpRoute,
                         arguments: 'ServiceProvider'),
                     child: ContainerChoice(
                         img: 'assets/images/delivery-boy.png',
@@ -83,29 +91,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ],
             ),
           ),
-          SizedBox(
-            height: 130,
-            child: Stack(
-              children: [
-                AnimatedPositioned(
-                  left: isAnimate ? 35 : 0,
-                  curve: Curves.fastOutSlowIn,
-                  duration: const Duration(seconds: 2),
-                  onEnd: () {},
-                  child: GestureDetector(
-                    onTap: () => Navigator.pushReplacementNamed(
-                        context, Routes.loginRoute,
-                        arguments: 'Admin'),
-                    child: ContainerChoice(
-                        img: 'assets/images/admin.png',
-                        txt1: 'As admin',
-                        txt2: 'Task coordination',
-                        containerColor: AppTheme.primarylight.withOpacity(0.6)),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // SizedBox(
+          //   height: 130,
+          //   child: Stack(
+          //     children: [
+          //       AnimatedPositioned(
+          //         left: isAnimate ? 35 : 0,
+          //         curve: Curves.fastOutSlowIn,
+          //         duration: const Duration(seconds: 2),
+          //         onEnd: () {},
+          //         child: GestureDetector(
+          //           onTap: () => Navigator.pushReplacementNamed(
+          //               context, Routes.loginRoute,
+          //               arguments: 'Admin'),
+          //           child: ContainerChoice(
+          //               img: 'assets/images/admin.png',
+          //               txt1: 'As admin',
+          //               txt2: 'Task coordination',
+          //               containerColor: AppTheme.primarylight.withOpacity(0.6)),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

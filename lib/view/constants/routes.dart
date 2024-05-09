@@ -4,6 +4,7 @@ class Routes {
   static const loginRoute = 'LoginScreen';
   static const signUpRoute = 'SignUpScreen';
   static const baseRoute = 'BaseScreen';
+  static const editProfile = 'EditProfileScreen';
 
   static const adminAccountRoute = 'AdminAccountScreen';
   static const adminReportsRoute = 'AdminReportsScreen';

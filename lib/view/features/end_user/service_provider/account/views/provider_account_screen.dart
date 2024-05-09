@@ -13,58 +13,40 @@ class ProviderAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Map<String, dynamic> decodedToken = JwtDecoder.decode(user.token);
-    // DateTime expirationDate = JwtDecoder.getExpirationDate(user.token);
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Account'),
+        title: const Text('Profile'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
-            const SizedBox(height: 28),
+            const SizedBox(height: 0),
             UserProfile(user: user),
-            const SizedBox(height: 28),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Text(user.role,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(color: AppTheme.blackText.withOpacity(0.8)))),
-            Divider(thickness: 4, color: AppTheme.dividerGrey),
-            const SizedBox(height: 28),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Text('User Activity Stats',
-                    style: Theme.of(context).textTheme.headlineLarge)),
-            const SizedBox(height: 28),
-            const UserActivityStats(text: 'Services offered', num: 0),
-            const SizedBox(height: 28),
-            Divider(thickness: 4, color: AppTheme.dividerGrey),
-            const SizedBox(height: 28),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Account Confirmed',
-                    style: Theme.of(context).textTheme.headlineLarge)),
-            const SizedBox(height: 28),
-            UserConfirmation(user: user),
-            const SizedBox(height: 28),
-            Divider(thickness: 4, color: AppTheme.dividerGrey),
-            const SizedBox(height: 28),
             const Spacer(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CustomButton(
-                  onPressed: () => Navigator.pushReplacementNamed(
-                      context, Routes.welcomeRoute),
-                  text: 'Sign Out',
-                  color: AppTheme.red,
-                  radius: 8,
-                  height: 50,
-                  width: 180),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomButton(
+                    textColor: AppTheme.white,
+                    onPressed: () => Navigator.pushReplacementNamed(
+                        context, Routes.loginRoute),
+                    text: 'Sign Out',
+                    color: AppTheme.red,
+                    radius: 8,
+                    height: 40,
+                    width: 150),
+                CustomButton(
+                    textColor: AppTheme.white,
+                    onPressed: () => Navigator.pushNamed(
+                        context, Routes.editProfile,
+                        arguments: user),
+                    text: 'Edit Profile',
+                    color: AppTheme.primarylight,
+                    radius: 8,
+                    height: 40,
+                    width: 150),
+              ],
             )
           ],
         ),

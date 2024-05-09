@@ -18,9 +18,11 @@ class DioHelper {
     Map<String, dynamic>? queryParameters,
     String? token,
     ProgressCallback? onReceiveProgress,
+    Map<String, dynamic>? data,
   }) async {
     try {
-      dio.options.headers = {};
+      // dio.options.headers = {};
+      dio.options.headers['Authorization'] = 'Bearer $token';
       final Response response = await dio.get(
         endPoint,
         queryParameters: queryParameters,
@@ -38,18 +40,51 @@ class DioHelper {
     }
   }
 
+  static Future<Response> deleteData({
+    required String endPoint,
+    Map<String, dynamic>? queryParameters,
+    String? token,
+    ProgressCallback? onReceiveProgress,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      // dio.options.headers = {};
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      final Response response = await dio.delete(
+        endPoint,
+        queryParameters: queryParameters,
+        // onReceiveProgress: onReceiveProgress,
+      );
+      debugPrint(
+          'Get DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      debugPrint(response.data.toString());
+      return response.data;
+    } catch (e) {
+      debugPrint(
+          'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
+      rethrow;
+    }
+  }
+
   static Future<Response> postData({
     required String endPoint,
     Map<String, dynamic>? queryParameters,
-    required Map<String, dynamic> data,
+    Map<String, dynamic>? data,
+    dynamic imgData,
     String? token,
     ProgressCallback? onReceiveProgress,
+    bool? img,
   }) async {
     try {
-      dio.options.headers = {};
+      // dio.options.headers = {};
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      if (img != null) {
+        dio.options.headers['Content-Type'] = 'multipart/form-data';
+      }
       final Response response = await dio.post(
         endPoint,
-        data: data,
+        data: data ?? imgData,
         queryParameters: queryParameters,
         onReceiveProgress: onReceiveProgress,
       );
@@ -61,6 +96,36 @@ class DioHelper {
       debugPrint(
           'post ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  static Future<Response> patchData({
+    required String endPoint,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? data,
+    String? token,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      // dio.options.headers = {};
+      dio.options.headers['Authorization'] = 'Bearer $token';
+
+      final Response response = await dio.patch(
+        endPoint,
+        data: data,
+        queryParameters: queryParameters,
+        onReceiveProgress: onReceiveProgress,
+      );
+      debugPrint(
+          'Patch DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // debugPrint(response.data.toString());
+      return response;
+    } catch (e) {
+      debugPrint(
+          'Patch ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      debugPrint(e.toString());
+      // return resp;
       rethrow;
     }
   }

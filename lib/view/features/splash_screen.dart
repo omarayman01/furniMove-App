@@ -37,12 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 alignment: Alignment.center,
                 children: [
                   AnimatedPositioned(
-                    left: isAnimate ? 70 : 0,
+                    left: isAnimate ? 55 : -0,
                     curve: Curves.fastOutSlowIn,
-                    duration: const Duration(seconds: 3),
+                    duration: const Duration(seconds: 4),
                     onEnd: () {
                       Navigator.pushReplacementNamed(
-                          context, Routes.welcomeRoute);
+                          context, Routes.loginRoute);
                     },
                     child: Image.asset(
                       MyAssets.logo,
@@ -53,10 +53,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   AnimatedPositioned(
                       bottom: isAnimate ? 140 : 0,
                       curve: Curves.fastOutSlowIn,
-                      duration: const Duration(seconds: 3),
+                      duration: const Duration(seconds: 4),
                       onEnd: () {
                         Navigator.pushReplacementNamed(
-                            context, Routes.welcomeRoute);
+                            context, Routes.loginRoute);
                       },
                       child: Text(
                         'FurniMove',

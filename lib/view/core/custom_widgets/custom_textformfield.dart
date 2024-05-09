@@ -12,9 +12,14 @@ class CustomTextFormField extends StatelessWidget {
       this.keyboardType,
       this.validator,
       required this.radius,
-      this.hintText});
+      this.hintText,
+      this.padding,
+      this.hor = 25,
+      this.vert = 15});
   final TextInputType? keyboardType;
   final double radius;
+  final bool? padding;
+  final double? hor, vert;
   final String? labelText;
   final String? hintText;
   final TextEditingController? controller;
@@ -25,7 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: hor!, vertical: vert!),
       child: TextFormField(
         style: Theme.of(context)
             .textTheme

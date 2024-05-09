@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/constants/routes.dart';
+import 'package:furni_move/view/core/custom_widgets/editprofile_screen.dart';
 import 'package:furni_move/view/features/base/views/base_screen.dart';
 import 'package:furni_move/view/features/registration/views/login_screen.dart';
 import 'package:furni_move/view/features/registration/views/signup_screen.dart';
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
         Routes.loginRoute: (context) => const LoginScreen(),
         Routes.signUpRoute: (context) => const SignUpScreen(),
         Routes.baseRoute: (context) => const BaseScreen(),
+        Routes.editProfile: (context) => const EditProfileScreen(),
+
         // Routes.homeRoute: (context) => const HomeScreen(),
         // Routes.clientActivityRoute: (context) => const ClientActivityScreen(),
         // Routes.clientAccountRoute: (context) => const ClientAccountScreen(),

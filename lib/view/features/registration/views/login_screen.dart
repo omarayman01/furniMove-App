@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/constants/data.dart';
@@ -38,21 +37,12 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               const LogoColumn(),
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, Routes.welcomeRoute);
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-              ),
               const SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.only(left: 25, bottom: 20),
                 child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text('Log In',
+                    alignment: Alignment.topCenter,
+                    child: Text('Sign In     ',
                         style: Theme.of(context).textTheme.displayMedium)),
               ),
               const SizedBox(height: 30),
@@ -102,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 10),
               CustomButton(
+                  textColor: AppTheme.white,
                   text: 'Log In',
                   color: AppTheme.primarylight,
                   radius: 6,
@@ -109,27 +100,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: 220,
                   onPressed: () async {
                     await login(emailController.text, passwordController.text);
-                    if (args == user.role) {
-                      Navigator.pushReplacementNamed(context, Routes.baseRoute,
-                          arguments: user);
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: "Account type not matchable",
-                        toastLength: Toast.LENGTH_SHORT,
-                      );
-                    }
+
+                    Navigator.pushReplacementNamed(context, Routes.baseRoute,
+                        arguments: user);
                   }),
               const SizedBox(height: 100),
-              args == 'Admin'
-                  ? const SizedBox()
-                  : RegisterOption(
-                      txt1: 'Don`t have an account?  ',
-                      txt2: 'Sign up',
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.signUpRoute,
-                            arguments: args);
-                      })
+              RegisterOption(
+                  txt1: 'Don`t have an account?  ',
+                  txt2: 'Sign up',
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, Routes.welcomeRoute,
+                        arguments: args);
+                  })
             ],
           ),
         ),
@@ -141,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // if (formKey.currentState?.validate() == true) {
     Response response = await DioHelper.postData(
         endPoint: EndPoints.login,
-        data: {'password': password, 'username': email});
+        data: {'password': password, 'Email': email});
     debugPrint('login page!!!!');
     Map<String, dynamic> data = response.data;
     debugPrint(data.toString());
