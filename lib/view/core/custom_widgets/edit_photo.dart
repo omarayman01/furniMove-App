@@ -46,7 +46,7 @@ class _EditPhotoState extends State<EditPhoto> {
             textColor: AppTheme.white),
         const SizedBox(width: 20),
         CustomButton(
-            onPressed: () => deletePhoto(widget.user.token),
+            onPressed: () => deletePhoto(widget.user.token!),
             borderColor: AppTheme.blackText.withOpacity(0.3),
             fontsize: 12,
             text: 'Delete Photo',

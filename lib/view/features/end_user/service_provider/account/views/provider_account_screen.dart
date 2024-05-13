@@ -6,6 +6,8 @@ import 'package:furni_move/view/core/custom_widgets/custom_button.dart';
 import 'package:furni_move/view/core/custom_widgets/user_activity_stats.dart';
 import 'package:furni_move/view/core/custom_widgets/user_confirmation.dart';
 import 'package:furni_move/view/core/custom_widgets/user_profile.dart';
+import 'package:furni_move/view_model/database/network/dio_helper.dart';
+import 'package:furni_move/view_model/database/network/end_point.dart';
 
 class ProviderAccountScreen extends StatelessWidget {
   const ProviderAccountScreen({super.key, required this.user});
@@ -29,8 +31,14 @@ class ProviderAccountScreen extends StatelessWidget {
               children: [
                 CustomButton(
                     textColor: AppTheme.white,
-                    onPressed: () => Navigator.pushReplacementNamed(
-                        context, Routes.loginRoute),
+                    onPressed: () async {
+                      await DioHelper.postData(
+                              endPoint: EndPoints.logout, token: user.token)
+                          .timeout(Duration(seconds: 5));
+                      user.token = '';
+                      Navigator.pushReplacementNamed(
+                          context, Routes.loginRoute);
+                    },
                     text: 'Sign Out',
                     color: AppTheme.red,
                     radius: 8,

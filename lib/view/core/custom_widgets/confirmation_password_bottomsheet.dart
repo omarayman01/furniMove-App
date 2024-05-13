@@ -80,7 +80,7 @@ class _ConfirmationPasswordBottomSheetState
               textColor: AppTheme.white,
               onPressed: () {
                 confirmPassword(newPasswordController.text,
-                    oldPasswordController.text, user.token);
+                    oldPasswordController.text, user.token!);
               },
               text: 'Change',
               color: AppTheme.primarylight,

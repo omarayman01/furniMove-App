@@ -1,13 +1,14 @@
 class UserModel {
-  String userName, email, token, role, id;
+  String? userName, email, token, role, id;
   String? phoneNumber, imgURL;
-  bool emailConfirmed;
+  bool emailConfirmed, suspended;
   int counter;
   UserModel(
       {required this.userName,
       required this.email,
       required this.counter,
       required this.emailConfirmed,
+      required this.suspended,
       required this.imgURL,
       required this.token,
       required this.role,
@@ -21,6 +22,7 @@ class UserModel {
           token: json['token'],
           emailConfirmed: json['emailConfirmed'],
           role: json['role'],
+          suspended: json['suspended'],
           counter: json['moveCounter'],
           imgURL: json['userImgURL'],
           id: json['id'],
@@ -36,6 +38,7 @@ class UserModel {
         'token': token,
         'role': role,
         'id': id,
+        'suspended': suspended,
         'phoneNumber': phoneNumber,
       };
 }

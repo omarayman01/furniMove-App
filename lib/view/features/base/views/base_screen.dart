@@ -41,7 +41,7 @@ class _BaseScreenState extends State<BaseScreen> {
     user = ModalRoute.of(context)?.settings.arguments as UserModel;
 
     return Scaffold(
-      body: displaybody(user.role)[selectedIndex],
+      body: displaybody(user.role!)[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedIndex,
           onTap: (index) {
@@ -49,7 +49,7 @@ class _BaseScreenState extends State<BaseScreen> {
             setState(() {});
           },
           type: BottomNavigationBarType.fixed,
-          items: displaynav(user.role)),
+          items: displaynav(user.role!)),
     );
   }
 

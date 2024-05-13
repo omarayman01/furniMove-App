@@ -9,14 +9,22 @@ import 'package:furni_move/view/core/custom_widgets/custom_button.dart';
 import 'package:furni_move/view_model/database/network/dio_helper.dart';
 import 'package:furni_move/view_model/database/network/end_point.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   const UserProfile({super.key, required this.user});
   final UserModel user;
+
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+int count = 0;
+
+class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     late String? text;
     late Color color;
-    if (user.emailConfirmed) {
+    if (widget.user.emailConfirmed) {
       text = 'Verified';
       color = AppTheme.green;
     } else {
@@ -31,64 +39,57 @@ class UserProfile extends StatelessWidget {
             height: 80,
             width: 90,
             backColor: AppTheme.primarylight,
-            url: user.imgURL,
+            url: widget.user.imgURL,
           ),
         ),
         CustomButton(
           onPressed: () {
-            if (user.emailConfirmed) {
-              // showDialog(
-              //     context: context,
-              //     builder: (context) {
-              //       return Dialog(
-              //           backgroundColor: Colors.transparent,
-              //           child: CustomButton(
-              //               onPressed: () {
-              //                 const Duration(seconds: 2);
-              //                 Navigator.pop(context);
-              //               },
-              //               text: 'Verified',
-              //               color: AppTheme.primarylight,
-              //               radius: 25,
-              //               height: 50,
-              //               width: 100,
-              //               textColor: AppTheme.white));
-              //     });
+            if (widget.user.emailConfirmed) {
             } else {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Dialog(
-                        backgroundColor: Colors.transparent,
-                        child: CustomButton(
-                            onPressed: () {
-                              verifyEmail(user.token);
-                            },
-                            text: 'Verify Account',
-                            color: AppTheme.primarylight,
-                            radius: 25,
-                            height: 50,
-                            width: 100,
-                            textColor: AppTheme.white));
-                  });
-              Duration(seconds: 5);
-              Navigator.pop(context);
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Dialog(
-                        backgroundColor: Colors.transparent,
-                        child: CustomButton(
-                            onPressed: () {
-                              verifyEmail(user.token);
-                            },
-                            text: 'Email Sent',
-                            color: AppTheme.green,
-                            radius: 25,
-                            height: 50,
-                            width: 90,
-                            textColor: AppTheme.white));
-                  });
+              if (count == 0) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                          backgroundColor: Colors.transparent,
+                          child: CustomButton(
+                              onPressed: () {
+                                verifyEmail(widget.user.token!);
+                                count = 1;
+                                Navigator.pop(context);
+
+                                setState(() {});
+                              },
+                              text: 'Verify Account',
+                              color: AppTheme.primarylight,
+                              radius: 25,
+                              height: 50,
+                              width: 100,
+                              textColor: AppTheme.white));
+                    });
+              }
+              // Duration(seconds: 2);
+              // Navigator.pop(context);
+              if (count == 1) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                          backgroundColor: Colors.transparent,
+                          child: CustomButton(
+                              onPressed: () {
+                                // verifyEmail(widget.user.token!);
+                                Navigator.pop(context);
+                                setState(() {});
+                              },
+                              text: 'Email Sent',
+                              color: AppTheme.green,
+                              radius: 25,
+                              height: 50,
+                              width: 90,
+                              textColor: AppTheme.white));
+                    });
+              }
             }
           },
           textColor: AppTheme.white,
@@ -103,20 +104,19 @@ class UserProfile extends StatelessWidget {
         Text(
           softWrap: true,
           maxLines: 1,
-          user.userName,
+          widget.user.userName!,
           style:
               Theme.of(context).textTheme.headlineLarge!.copyWith(fontSize: 26),
         ),
         Text(
           softWrap: true,
           maxLines: 1,
-          user.role,
+          widget.user.role!,
           style: Theme.of(context)
               .textTheme
               .bodyLarge!
               .copyWith(color: AppTheme.blackText.withOpacity(0.8)),
         ),
-        const SizedBox(height: 0),
         Row(
           mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
 
@@ -126,7 +126,7 @@ class UserProfile extends StatelessWidget {
                 fontsize: 11,
                 borderColor: AppTheme.blackText.withOpacity(0.3),
                 textColor: AppTheme.blackText,
-                text: user.phoneNumber!,
+                text: widget.user.phoneNumber!,
                 color: AppTheme.white,
                 radius: 5,
                 height: 30,
@@ -135,7 +135,7 @@ class UserProfile extends StatelessWidget {
                 fontsize: 11,
                 borderColor: AppTheme.blackText.withOpacity(0.3),
                 textColor: AppTheme.blackText,
-                text: user.email,
+                text: widget.user.email!,
                 color: AppTheme.white,
                 radius: 5,
                 height: 30,
@@ -148,7 +148,7 @@ class UserProfile extends StatelessWidget {
         Text(
           softWrap: true,
           maxLines: 1,
-          'Moves Counter: ${user.counter.toString()}',
+          'Moves Counter: ${widget.user.counter.toString()}',
           style: Theme.of(context)
               .textTheme
               .bodyLarge!

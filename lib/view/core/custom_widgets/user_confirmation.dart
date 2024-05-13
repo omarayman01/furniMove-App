@@ -29,7 +29,7 @@ class UserConfirmation extends StatelessWidget {
                         verified: user.emailConfirmed,
                         token: user.token,
                         text: 'E-mail',
-                        hintText: user.email,
+                        hintText: user.email!,
                         radius: 5,
                       )),
               child: user.emailConfirmed

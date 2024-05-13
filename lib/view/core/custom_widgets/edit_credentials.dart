@@ -23,174 +23,189 @@ class _EditCredentialsState extends State<EditCredentials> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Full name',
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: AppTheme.blackText,
-                        fontWeight: FontWeight.w800)),
-                CustomButton(
-                    fontsize: 13,
-                    text: widget.user.userName,
-                    color: AppTheme.white,
-                    radius: 8,
-                    height: 40,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Full name',
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: AppTheme.blackText,
+                          fontWeight: FontWeight.w800)),
+                  CustomButton(
+                      fontsize: 13,
+                      text: widget.user.userName!,
+                      color: AppTheme.white,
+                      radius: 8,
+                      height: 40,
+                      width: 140,
+                      textColor: AppTheme.blackText,
+                      borderColor: AppTheme.blackText.withOpacity(0.5))
+                ],
+              ),
+              const SizedBox(width: 15),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Email',
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: AppTheme.blackText,
+                          fontWeight: FontWeight.w800)),
+                  CustomButton(
+                      fontsize: 13,
+                      text: widget.user.email!,
+                      color: AppTheme.white,
+                      radius: 8,
+                      height: 40,
+                      width: 150,
+                      textColor: AppTheme.blackText,
+                      borderColor: AppTheme.blackText.withOpacity(0.5))
+                ],
+              )
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Role',
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: AppTheme.blackText,
+                          fontWeight: FontWeight.w800)),
+                  CustomButton(
+                      fontsize: 13,
+                      text: widget.user.role!,
+                      color: AppTheme.white,
+                      radius: 8,
+                      height: 40,
+                      width: 140,
+                      textColor: AppTheme.blackText,
+                      borderColor: AppTheme.blackText.withOpacity(0.5))
+                ],
+              ),
+              const SizedBox(width: 15),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('* Phone Number',
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: AppTheme.blackText,
+                          fontWeight: FontWeight.w800)),
+                  const SizedBox(height: 3),
+                  SizedBox(
                     width: 150,
-                    textColor: AppTheme.blackText,
-                    borderColor: AppTheme.blackText.withOpacity(0.5))
-              ],
-            ),
-            Column(
+                    height: 58,
+                    child: CustomTextFormField(
+                      hor: 0,
+                      vert: 8,
+                      controller: phoneController,
+                      radius: 8,
+                      hintText: widget.user.phoneNumber,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 5, right: 22),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Email',
+                Text('* Old Password',
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: AppTheme.blackText,
                         fontWeight: FontWeight.w800)),
-                CustomButton(
-                    fontsize: 13,
-                    text: widget.user.email,
-                    color: AppTheme.white,
-                    radius: 8,
-                    height: 40,
-                    width: 180,
-                    textColor: AppTheme.blackText,
-                    borderColor: AppTheme.blackText.withOpacity(0.5))
-              ],
-            )
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Role',
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: AppTheme.blackText,
-                        fontWeight: FontWeight.w800)),
-                CustomButton(
-                    fontsize: 13,
-                    text: widget.user.role,
-                    color: AppTheme.white,
-                    radius: 8,
-                    height: 40,
-                    width: 150,
-                    textColor: AppTheme.blackText,
-                    borderColor: AppTheme.blackText.withOpacity(0.5))
-              ],
-            ),
-            const SizedBox(width: 22),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('* Phone Number',
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: AppTheme.blackText,
-                        fontWeight: FontWeight.w800)),
-                const SizedBox(height: 3),
-                SizedBox(
-                  width: 177,
-                  height: 58,
-                  child: CustomTextFormField(
-                    hor: 0,
-                    vert: 8,
-                    controller: phoneController,
-                    radius: 8,
-                    hintText: widget.user.phoneNumber,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    // width: 250,
+                    height: 80,
+                    child: CustomTextFormField(
+                      controller: oldPasswordController,
+                      hor: 0,
+                      vert: 15,
+                      radius: 8,
+                      hintText: '',
+                    ),
                   ),
                 ),
               ],
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 50,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('* Old Password',
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: AppTheme.blackText, fontWeight: FontWeight.w800)),
-            SizedBox(
-              // width: 200,
-              height: 90,
-              child: CustomTextFormField(
-                controller: oldPasswordController,
-                hor: 0,
-                vert: 15,
-                radius: 8,
-                hintText: '',
-              ),
             ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('* New Password',
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: AppTheme.blackText, fontWeight: FontWeight.w800)),
-            SizedBox(
-              // width: 200,
-              height: 90,
-              child: CustomTextFormField(
-                controller: newPasswordController,
-                hor: 0,
-                vert: 15,
-                radius: 8,
-                hintText: '',
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 5, right: 22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('* New Password',
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: AppTheme.blackText,
+                        fontWeight: FontWeight.w800)),
+                SizedBox(
+                  // width: 200,
+                  height: 80,
+                  child: CustomTextFormField(
+                    controller: newPasswordController,
+                    hor: 0,
+                    vert: 15,
+                    radius: 8,
+                    hintText: '',
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        // const Spacer(),
-        const SizedBox(height: 40),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomButton(
-                borderColor: AppTheme.blackText,
-                textColor: AppTheme.blackText,
-                onPressed: () => Navigator.pop(context),
-                text: 'Close',
-                color: AppTheme.white,
-                radius: 8,
-                height: 50,
-                width: 150),
-            const SizedBox(width: 10),
-            CustomButton(
-                textColor: AppTheme.white,
-                onPressed: () {
-                  updateProfile(
-                      phoneController.text,
-                      newPasswordController.text,
-                      oldPasswordController.text,
-                      user.token);
-                  const Duration(seconds: 2);
-                  Navigator.pop(context);
-                },
-                text: 'Save changes',
-                color: AppTheme.primarylight,
-                radius: 8,
-                height: 50,
-                width: 150),
-          ],
-        ),
-        const SizedBox(height: 0),
-      ],
+          ),
+          // const Spacer(),
+          const SizedBox(height: 40),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomButton(
+                  borderColor: AppTheme.blackText,
+                  textColor: AppTheme.blackText,
+                  onPressed: () => Navigator.pop(context),
+                  text: 'Close',
+                  color: AppTheme.white,
+                  radius: 8,
+                  height: 50,
+                  width: 150),
+              const SizedBox(width: 10),
+              CustomButton(
+                  textColor: AppTheme.white,
+                  onPressed: () {
+                    updateProfile(
+                        phoneController.text,
+                        newPasswordController.text,
+                        oldPasswordController.text,
+                        user.token!);
+                    const Duration(seconds: 2);
+                    Navigator.pop(context);
+                  },
+                  text: 'Save changes',
+                  color: AppTheme.primarylight,
+                  radius: 8,
+                  height: 50,
+                  width: 150),
+            ],
+          ),
+          const SizedBox(height: 0),
+        ],
+      ),
     );
   }
 

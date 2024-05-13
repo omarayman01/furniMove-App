@@ -31,11 +31,9 @@ class DioHelper {
       debugPrint(
           'Get DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       debugPrint(response.data.toString());
-      return response.data;
+      return response;
     } catch (e) {
-      debugPrint(
-          'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
+      debugPrint(e.toString());
       rethrow;
     }
   }
