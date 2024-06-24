@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/core/custom_widgets/avatar.dart';
 import 'package:furni_move/view/core/custom_widgets/custom_button.dart';
+import 'package:furni_move/view/features/base/views/base_screen.dart';
 import 'package:furni_move/view_model/database/network/dio_helper.dart';
 import 'package:furni_move/view_model/database/network/end_point.dart';
 
@@ -55,8 +54,9 @@ class _UserProfileState extends State<UserProfile> {
                           child: CustomButton(
                               onPressed: () {
                                 verifyEmail(widget.user.token!);
+                                updateData();
                                 count = 1;
-                                Navigator.pop(context);
+                                Navigator.pop(context, true);
 
                                 setState(() {});
                               },
@@ -79,7 +79,7 @@ class _UserProfileState extends State<UserProfile> {
                           child: CustomButton(
                               onPressed: () {
                                 // verifyEmail(widget.user.token!);
-                                Navigator.pop(context);
+                                Navigator.pop(context, true);
                                 setState(() {});
                               },
                               text: 'Email Sent',
@@ -165,5 +165,22 @@ class _UserProfileState extends State<UserProfile> {
     debugPrint('Confimmm page!!!!');
     Map<String, dynamic> data = response.data;
     debugPrint(data.toString());
+  }
+
+  Future<void> updateData() async {
+    Response resp = await DioHelper.getData(
+      endPoint: EndPoints.getUser,
+      token: user.token,
+    );
+    debugPrint(resp.toString());
+    debugPrint(resp.data.toString());
+    UserModel user2;
+    Map<String, dynamic> data = resp.data;
+    debugPrint(data.toString());
+    user2 = UserModel.fromJson(data);
+    user.copyFrom(user2);
+    print(user.imgURL.toString());
+    print(user.token);
+    setState(() {});
   }
 }

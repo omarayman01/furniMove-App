@@ -17,6 +17,8 @@ class EndPoints {
   static const String getMoveRequestById = '/api/Admin/getMoveRequestById';
   static const String getUsersByRole = '/api/Admin/getUsersByRole';
   static const String updateUser = '/api/Account/updateUser';
+  static const String getUser = '/api/Account/getCurrentUser';
+
   static const String addUserImg = '/api/Account/addUserImg';
   static const String deleteUserImg = '/api/Account/deleteUserImg';
 }

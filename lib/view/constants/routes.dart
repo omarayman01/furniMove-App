@@ -17,4 +17,7 @@ class Routes {
   static const providerActivityRoute = 'ProviderActivityScreen';
   static const providerAccountRoute = 'ProviderAccountScreen';
   static const providerRequestsRoute = 'ProviderRequestsScreen';
+  static const providerAddTruckRoute = 'ProviderAddTruckScreen';
+  static const providerRequestMapRoute = 'ProviderRequestMapScreen';
+  static const providerRequestDetailsRoute = 'ProviderRequestDetailsScreen';
 }

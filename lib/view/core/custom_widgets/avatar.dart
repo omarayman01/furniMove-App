@@ -26,7 +26,7 @@ class Avatar extends StatelessWidget {
               child: Icon(
               Icons.person,
               color: AppTheme.white,
-              size: 45,
+              size: 40,
             ))
           : ClipOval(child: Image.network(url!, fit: BoxFit.cover)),
     );

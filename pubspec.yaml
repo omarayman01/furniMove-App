@@ -41,6 +41,7 @@ dependencies:
   fluttertoast: ^8.2.4
   font_awesome_flutter: ^10.7.0
   google_fonts: ^6.1.0
+  google_maps_flutter: ^2.6.1
   http: ^1.2.1
   http_parser: ^4.0.2
   image_picker: ^1.1.1

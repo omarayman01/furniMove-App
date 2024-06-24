@@ -33,7 +33,8 @@ class DioHelper {
       debugPrint(response.data.toString());
       return response;
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint(
+          'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       rethrow;
     }
   }
@@ -54,12 +55,12 @@ class DioHelper {
         // onReceiveProgress: onReceiveProgress,
       );
       debugPrint(
-          'Get DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+          'delete DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       debugPrint(response.data.toString());
-      return response.data;
+      return response;
     } catch (e) {
       debugPrint(
-          'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+          'delete ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
       rethrow;
     }

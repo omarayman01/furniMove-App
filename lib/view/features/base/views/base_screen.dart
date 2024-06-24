@@ -8,6 +8,7 @@ import 'package:furni_move/view/features/end_user/customer/activity/views/custom
 import 'package:furni_move/view/features/end_user/customer/home/views/customer_home_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/account/views/provider_account_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/activity/views/provider_activity_screen.dart';
+import 'package:furni_move/view/features/end_user/service_provider/add_truck/views/add_truck.dart';
 import 'package:furni_move/view/features/end_user/service_provider/requests/views/provider_request_screen.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -22,15 +23,16 @@ List<Widget> customerTabs = [
   CustomerActivityScreen(user: user),
   CustomerAccountScreen(user: user)
 ];
-List<Widget> serviceProviderTabs = [
-  RequestsScreen(user: user),
-  ProviderActivityScreen(user: user),
-  ProviderAccountScreen(user: user)
+List<Widget> serviceProviderTabs = const [
+  RequestsScreen(),
+  ProviderActivityScreen(),
+  AddTruckScreen(),
+  ProviderAccountScreen()
 ];
-List<Widget> adminTabs = [
-  ReportsScreen(user: user),
-  EndUsersScreen(user: user),
-  AdminAccountScreen(user: user)
+List<Widget> adminTabs = const [
+  ReportsScreen(),
+  EndUsersScreen(),
+  AdminAccountScreen()
 ];
 late UserModel user;
 int selectedIndex = 0;
@@ -93,5 +95,6 @@ List<BottomNavigationBarItem> serviceProvider = const [
   BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Requests'),
   BottomNavigationBarItem(
       icon: Icon(Icons.library_books_outlined), label: 'Activity'),
+  BottomNavigationBarItem(icon: Icon(Icons.fire_truck_sharp), label: 'Truck'),
   BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: 'Account'),
 ];

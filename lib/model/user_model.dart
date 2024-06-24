@@ -41,4 +41,31 @@ class UserModel {
         'suspended': suspended,
         'phoneNumber': phoneNumber,
       };
+  void updateFromJson(Map<String, dynamic> json) {
+    if (json.containsKey('userName')) userName = json['userName'];
+    if (json.containsKey('email')) email = json['email'];
+    // if (json.containsKey('token')) token = json['token'];
+    if (json.containsKey('emailConfirmed')) {
+      emailConfirmed = json['emailConfirmed'];
+    }
+    if (json.containsKey('role')) role = json['role'];
+    if (json.containsKey('suspended')) suspended = json['suspended'];
+    if (json.containsKey('moveCounter')) counter = json['moveCounter'];
+    if (json.containsKey('userImgURL')) imgURL = json['userImgURL'];
+    if (json.containsKey('id')) id = json['id'];
+    if (json.containsKey('phoneNumber')) phoneNumber = json['phoneNumber'];
+  }
+
+  void copyFrom(UserModel other) {
+    userName = other.userName;
+    email = other.email;
+    // token = other.token;
+    role = other.role;
+    id = other.id;
+    phoneNumber = other.phoneNumber;
+    imgURL = other.imgURL;
+    emailConfirmed = other.emailConfirmed;
+    suspended = other.suspended;
+    counter = other.counter;
+  }
 }

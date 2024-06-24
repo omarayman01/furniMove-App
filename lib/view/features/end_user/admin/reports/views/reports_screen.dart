@@ -11,13 +11,13 @@ import 'package:furni_move/view/features/end_user/admin/reports/widgets/requests
 import 'package:furni_move/view/features/end_user/admin/reports/widgets/requests/ongoing_requests.dart';
 import 'package:furni_move/view_model/cubits/admin_cubits/completed_requests/completed_requests_cubit.dart';
 import 'package:furni_move/view_model/cubits/admin_cubits/created_requests/created_requests_cubit.dart';
-import 'package:furni_move/view_model/cubits/admin_cubits/offers/offers_cubit.dart';
-import 'package:furni_move/view_model/cubits/admin_cubits/users/users_cubit.dart';
+
 import 'package:furni_move/view_model/repos/admin/admin_repo_impl.dart';
 
 class ReportsScreen extends StatefulWidget {
-  const ReportsScreen({super.key, required this.user});
-  final UserModel user;
+  const ReportsScreen({
+    super.key,
+  });
 
   @override
   State<ReportsScreen> createState() => _ReportsScreenState();
@@ -43,12 +43,12 @@ class _ReportsScreenState extends State<ReportsScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CreatedRequestsCubit(AdminRepoImpl())
-            ..fetchCreatedRequests(widget.user),
+          create: (context) =>
+              CreatedRequestsCubit(AdminRepoImpl())..fetchCreatedRequests(user),
         ),
         BlocProvider(
             create: (context) => CompletedRequestsCubit(AdminRepoImpl())
-              ..fetchCompletedRequests(widget.user))
+              ..fetchCompletedRequests(user))
       ],
       child: Scaffold(
         drawer: Drawer(
@@ -72,7 +72,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 onTap: () {
                   setState(() {
                     _activeWidget = CompletedRequests(
-                      user: widget.user,
+                      user: user,
                     );
                     text = 'Completed Requests';
                     _sizedWidget = const SizedBox(width: 50);
@@ -91,7 +91,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 onTap: () {
                   setState(() {
                     _activeWidget = OnGoingRequests(
-                      user: widget.user,
+                      user: user,
                     );
                     text = 'On Going Requests';
                     _sizedWidget = const SizedBox(width: 55);

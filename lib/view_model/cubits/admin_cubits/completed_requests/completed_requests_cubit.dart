@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:furni_move/model/request.model.dart';
+import 'package:furni_move/model/request_model/request_model.dart';
 import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view_model/repos/admin/admin_repo.dart';
 

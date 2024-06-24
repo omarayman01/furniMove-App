@@ -5,12 +5,14 @@ import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/core/custom_widgets/custom_button.dart';
 import 'package:furni_move/view/core/custom_widgets/custom_textformfield.dart';
 import 'package:furni_move/view/features/base/views/base_screen.dart';
+import 'package:furni_move/view/features/base/views/base_screen.dart';
 import 'package:furni_move/view_model/database/network/dio_helper.dart';
 import 'package:furni_move/view_model/database/network/end_point.dart';
 
 class EditCredentials extends StatefulWidget {
-  const EditCredentials({super.key, required this.user});
-  final UserModel user;
+  const EditCredentials({
+    super.key,
+  });
 
   @override
   State<EditCredentials> createState() => _EditCredentialsState();
@@ -40,7 +42,7 @@ class _EditCredentialsState extends State<EditCredentials> {
                           fontWeight: FontWeight.w800)),
                   CustomButton(
                       fontsize: 13,
-                      text: widget.user.userName!,
+                      text: user.userName!,
                       color: AppTheme.white,
                       radius: 8,
                       height: 40,
@@ -59,7 +61,7 @@ class _EditCredentialsState extends State<EditCredentials> {
                           fontWeight: FontWeight.w800)),
                   CustomButton(
                       fontsize: 13,
-                      text: widget.user.email!,
+                      text: user.email!,
                       color: AppTheme.white,
                       radius: 8,
                       height: 40,
@@ -84,7 +86,7 @@ class _EditCredentialsState extends State<EditCredentials> {
                           fontWeight: FontWeight.w800)),
                   CustomButton(
                       fontsize: 13,
-                      text: widget.user.role!,
+                      text: user.role!,
                       color: AppTheme.white,
                       radius: 8,
                       height: 40,
@@ -110,7 +112,7 @@ class _EditCredentialsState extends State<EditCredentials> {
                       vert: 8,
                       controller: phoneController,
                       radius: 8,
-                      hintText: widget.user.phoneNumber,
+                      hintText: user.phoneNumber,
                     ),
                   ),
                 ],
@@ -178,7 +180,7 @@ class _EditCredentialsState extends State<EditCredentials> {
               CustomButton(
                   borderColor: AppTheme.blackText,
                   textColor: AppTheme.blackText,
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Navigator.pop(context, true),
                   text: 'Close',
                   color: AppTheme.white,
                   radius: 8,
@@ -193,8 +195,9 @@ class _EditCredentialsState extends State<EditCredentials> {
                         newPasswordController.text,
                         oldPasswordController.text,
                         user.token!);
+                    updateData();
                     const Duration(seconds: 2);
-                    Navigator.pop(context);
+                    Navigator.pop(context, true);
                   },
                   text: 'Save changes',
                   color: AppTheme.primarylight,
@@ -225,5 +228,22 @@ class _EditCredentialsState extends State<EditCredentials> {
     debugPrint('updateeeee page!!!!');
     Map<String, dynamic> data = response.data;
     debugPrint(data.toString());
+  }
+
+  Future<void> updateData() async {
+    Response resp = await DioHelper.getData(
+      endPoint: EndPoints.getUser,
+      token: user.token,
+    );
+    debugPrint(resp.toString());
+    debugPrint(resp.data.toString());
+    UserModel user2;
+    Map<String, dynamic> data = resp.data;
+    debugPrint(data.toString());
+    user2 = UserModel.fromJson(data);
+    user.copyFrom(user2);
+    print(user.imgURL.toString());
+    print(user.token);
+    setState(() {});
   }
 }

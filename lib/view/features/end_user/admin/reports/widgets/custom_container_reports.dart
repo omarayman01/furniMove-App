@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furni_move/model/request.model.dart';
+import 'package:furni_move/model/request_model/request_model.dart';
 import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/core/custom_widgets/avatar.dart';
@@ -21,60 +21,96 @@ class CustomContainerReports extends StatelessWidget {
           enableDrag: true,
           // shape: Border.symmetric(),
           elevation: 10,
-          backgroundColor: Colors.transparent.withOpacity(0.2),
+          backgroundColor: Colors.white.withOpacity(0.8),
+          // backgroundColor: Colors.transparent.withOpacity(0.2),
+
           context: context,
           builder: (_) => ModalBottomSheetOffers(
                 id: request.id.toString(),
                 user: user,
               )),
       child: Container(
-        height: 80,
+        height: 130,
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        margin: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: AppTheme.lightGrey.withOpacity(0.3),
         ),
         child: Row(
+          // crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Avatar(
               backColor: AppTheme.primarylight,
               height: 64,
               width: 64,
+              url: user.imgURL,
             ),
             const SizedBox(width: 15),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 5),
                 Text(
-                  request.customer.toString(),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  '${request.cost.toString()}\$',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  request.endLocation.toString(),
+                  request.customer!.userName.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
-                      .copyWith(color: AppTheme.grey),
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    Text(
+                      'From: ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    SizedBox(
+                      width: 145,
+                      child: Text(
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        request.startAddress.toString(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontSize: 12),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'To:     ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    SizedBox(
+                      width: 145,
+                      child: Text(
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        request.endAddress.toString(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontSize: 12),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
             const Spacer(),
-            Row(
-              children: [
-                const Icon(Icons.star, color: Colors.yellow),
-                Text(
-                  request.rating.toString(),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ],
-            )
+            Text(
+              '${request.cost.toString()}\$',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ],
         ),
       ),
