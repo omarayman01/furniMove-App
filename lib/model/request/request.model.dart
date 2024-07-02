@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import 'customer.dart';
-import 'end_location.dart';
-import 'start_location.dart';
+import 'customer.model.dart';
+import 'end_location.model.dart';
+import 'start_location.model.dart';
 
 class RequestModel extends Equatable {
   final int? id;
@@ -10,8 +10,10 @@ class RequestModel extends Equatable {
   final EndLocation? endLocation;
   final String? customerId;
   final Customer? customer;
+  final dynamic serviceProviderId;
+  final dynamic serviceProvider;
   final String? status;
-  final DateTime? startTime;
+  final String? startDate;
   final dynamic endTime;
   final dynamic rating;
   final dynamic cost;
@@ -28,8 +30,10 @@ class RequestModel extends Equatable {
     this.endLocation,
     this.customerId,
     this.customer,
+    this.serviceProviderId,
+    this.serviceProvider,
     this.status,
-    this.startTime,
+    this.startDate,
     this.endTime,
     this.rating,
     this.cost,
@@ -54,10 +58,10 @@ class RequestModel extends Equatable {
         customer: json['customer'] == null
             ? null
             : Customer.fromJson(json['customer'] as Map<String, dynamic>),
+        serviceProviderId: json['serviceProviderId'] as dynamic,
+        serviceProvider: json['serviceProvider'] as dynamic,
         status: json['status'] as String?,
-        startTime: json['startTime'] == null
-            ? null
-            : DateTime.parse(json['startTime'] as String),
+        startDate: json['startDate'] as String?,
         endTime: json['endTime'] as dynamic,
         rating: json['rating'] as dynamic,
         cost: json['cost'] as dynamic,
@@ -75,8 +79,10 @@ class RequestModel extends Equatable {
         'endLocation': endLocation?.toJson(),
         'customerId': customerId,
         'customer': customer?.toJson(),
+        'serviceProviderId': serviceProviderId,
+        'serviceProvider': serviceProvider,
         'status': status,
-        'startTime': startTime?.toIso8601String(),
+        'startDate': startDate,
         'endTime': endTime,
         'rating': rating,
         'cost': cost,
@@ -96,8 +102,10 @@ class RequestModel extends Equatable {
       endLocation,
       customerId,
       customer,
+      serviceProviderId,
+      serviceProvider,
       status,
-      startTime,
+      startDate,
       endTime,
       rating,
       cost,

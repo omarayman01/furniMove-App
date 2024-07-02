@@ -9,6 +9,7 @@ import 'package:furni_move/view/features/end_user/customer/home/views/customer_h
 import 'package:furni_move/view/features/end_user/service_provider/account/views/provider_account_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/activity/views/provider_activity_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/add_truck/views/add_truck.dart';
+import 'package:furni_move/view/features/end_user/service_provider/add_truck/views/truck_screen.dart';
 import 'package:furni_move/view/features/end_user/service_provider/requests/views/provider_request_screen.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ List<Widget> customerTabs = [
 List<Widget> serviceProviderTabs = const [
   RequestsScreen(),
   ProviderActivityScreen(),
-  AddTruckScreen(),
+  TruckScreen(),
   ProviderAccountScreen()
 ];
 List<Widget> adminTabs = const [
@@ -38,6 +39,12 @@ late UserModel user;
 int selectedIndex = 0;
 
 class _BaseScreenState extends State<BaseScreen> {
+  @override
+  void initState() {
+    selectedIndex = 0;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     user = ModalRoute.of(context)?.settings.arguments as UserModel;
@@ -57,7 +64,7 @@ class _BaseScreenState extends State<BaseScreen> {
 
   dynamic displaynav(String value) {
     if (value == 'Customer') {
-      return client;
+      return customer;
     } else if (value == 'ServiceProvider') {
       return serviceProvider;
     } else if (value == 'Admin') {
@@ -78,10 +85,10 @@ class _BaseScreenState extends State<BaseScreen> {
   }
 }
 
-List<BottomNavigationBarItem> client = const [
+List<BottomNavigationBarItem> customer = const [
   BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
   BottomNavigationBarItem(
-      icon: Icon(Icons.library_books_outlined), label: 'Activity'),
+      icon: Icon(Icons.library_books_outlined), label: 'Moves'),
   BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: 'Account'),
 ];
 List<BottomNavigationBarItem> admin = const [

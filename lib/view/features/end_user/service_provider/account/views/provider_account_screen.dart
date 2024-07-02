@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/constants/routes.dart';
 import 'package:furni_move/view/core/custom_widgets/custom_button.dart';
 
 import 'package:furni_move/view/core/custom_widgets/user_profile.dart';
 import 'package:furni_move/view/features/base/views/base_screen.dart';
+import 'package:furni_move/view_model/database/network/dio_helper.dart';
+import 'package:furni_move/view_model/database/network/end_point.dart';
 
 class ProviderAccountScreen extends StatefulWidget {
   const ProviderAccountScreen({
@@ -16,10 +20,15 @@ class ProviderAccountScreen extends StatefulWidget {
 }
 
 class _ProviderAccountScreenState extends State<ProviderAccountScreen> {
+  @override
+  void initState() {
+    debugPrint("refresh");
+    updateData();
+    super.initState();
+  }
+
   void _refreshData() {
-    setState(() {
-      // Refresh the data or state here
-    });
+    setState(() {});
   }
 
   @override
@@ -69,5 +78,21 @@ class _ProviderAccountScreenState extends State<ProviderAccountScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> updateData() async {
+    Response resp = await DioHelper.getData(
+      endPoint: EndPoints.getUser,
+      token: user.token,
+    );
+    debugPrint(resp.toString());
+    debugPrint(resp.data.toString());
+    UserModel user2;
+    Map<String, dynamic> data = resp.data;
+    debugPrint(data.toString());
+    user2 = UserModel.fromJson(data);
+    user.copyFrom(user2);
+    debugPrint(user.toString());
+    setState(() {});
   }
 }

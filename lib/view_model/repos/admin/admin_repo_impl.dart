@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:furni_move/model/offer/offer.model.dart';
-import 'package:furni_move/model/request_model/request_model.dart';
+import 'package:furni_move/model/request/request.model.dart';
 import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view_model/database/network/dio_helper.dart';
 import 'package:furni_move/view_model/database/network/end_point.dart';

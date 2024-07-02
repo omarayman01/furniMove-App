@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:furni_move/model/request/request.model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
-import 'package:furni_move/view/constants/routes.dart';
 import 'package:furni_move/view/core/custom_widgets/avatar.dart';
+import 'package:furni_move/view/features/end_user/service_provider/activity/views/request_map_screen.dart';
 
-class ServiceProviderOffer extends StatelessWidget {
-  const ServiceProviderOffer({super.key, this.rate});
+class MoveCard extends StatelessWidget {
+  const MoveCard({super.key, this.rate, required this.request});
   final bool? rate;
+  final RequestModel request;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,7 +15,11 @@ class ServiceProviderOffer extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (rate == null) {
-            Navigator.pushNamed(context, Routes.providerRequestMapRoute);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RequestMapScreen(request: request),
+                ));
           }
         },
         child: Card(
@@ -31,12 +37,13 @@ class ServiceProviderOffer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Avatar(
+                      url: request.customer!.userImgUrl!,
                       backColor: AppTheme.primarylight,
                       height: 50,
                       width: 50,
                     ),
                     Text(
-                      'Name',
+                      request.customer!.userName!,
                       style: Theme.of(context).textTheme.bodyMedium,
                     )
                   ],
@@ -49,9 +56,15 @@ class ServiceProviderOffer extends StatelessWidget {
                       'Start: ',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Text(
-                      'Elshrouk, Eltas3a',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                    SizedBox(
+                      width: 240,
+                      child: Text(
+                        softWrap: true,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        request.startAddress!.toString(),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     )
                   ],
                 ),
@@ -62,9 +75,15 @@ class ServiceProviderOffer extends StatelessWidget {
                       'End: ',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Text(
-                      'NasrCity, Ard EL Golf',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                    SizedBox(
+                      width: 240,
+                      child: Text(
+                        softWrap: true,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        request.endAddress!.toString(),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     )
                   ],
                 ),
@@ -73,7 +92,7 @@ class ServiceProviderOffer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      '24/6/2024',
+                      request.startDate!.toString(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     // Text(
@@ -88,16 +107,16 @@ class ServiceProviderOffer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            '50 \$',
+                            '${request.cost.toString()} \$',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           Row(
                             children: [
                               Text(
-                                '4',
+                                request.rating.toString(),
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.star,
                                 color: Colors.yellow,
                               )
@@ -109,7 +128,7 @@ class ServiceProviderOffer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                             Text(
-                              '50 \$',
+                              '${request.cost.toString()} \$',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ]),

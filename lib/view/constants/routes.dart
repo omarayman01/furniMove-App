@@ -20,4 +20,6 @@ class Routes {
   static const providerAddTruckRoute = 'ProviderAddTruckScreen';
   static const providerRequestMapRoute = 'ProviderRequestMapScreen';
   static const providerRequestDetailsRoute = 'ProviderRequestDetailsScreen';
+
+  static const customerMapLocationRoute = 'CustomerMapLocationScreen';
 }

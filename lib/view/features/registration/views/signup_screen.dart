@@ -131,18 +131,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future<void> signUp(String email, String password, String userName,
       String phoneNumber, String role) async {
-    // if (formKey.currentState?.validate() == true) {
-    Response response =
-        await DioHelper.postData(endPoint: EndPoints.register, data: {
-      'password': password,
-      'Email': email,
-      'username': userName,
-      'phoneNumber': phoneNumber,
-      'role': role
-    });
-    debugPrint('sign up page!!!!');
-    Map<String, dynamic> data = response.data;
-    debugPrint(data.toString());
-    user = UserModel.fromJson(data);
+    if (formKey.currentState?.validate() == true) {
+      Response response =
+          await DioHelper.postData(endPoint: EndPoints.register, data: {
+        'password': password,
+        'Email': email,
+        'username': userName,
+        'phoneNumber': phoneNumber,
+        'role': role
+      });
+      debugPrint('sign up page!!!!');
+      Map<String, dynamic> data = response.data;
+      debugPrint(data.toString());
+      user = UserModel.fromJson(data);
+    }
   }
 }

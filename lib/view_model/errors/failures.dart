@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 abstract class Faliure {
   final String errMessage;
@@ -43,13 +45,33 @@ class ServerFailure extends Faliure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    debugPrint('INNNN Server');
+    debugPrint(statusCode.toString());
+    debugPrint(response.toString());
+
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      Fluttertoast.showToast(
+        msg: response['title'],
+        toastLength: Toast.LENGTH_LONG,
+      );
       return ServerFailure(response['error']['message']);
     } else if (statusCode == 404) {
+      Fluttertoast.showToast(
+        msg: response['title'],
+        toastLength: Toast.LENGTH_LONG,
+      );
       return ServerFailure('Your Request Not Found!!');
     } else if (statusCode == 500) {
+      Fluttertoast.showToast(
+        msg: response['title'],
+        toastLength: Toast.LENGTH_LONG,
+      );
       return ServerFailure('Internal Server Error!!');
     } else {
+      Fluttertoast.showToast(
+        msg: response['title'],
+        toastLength: Toast.LENGTH_LONG,
+      );
       return ServerFailure('Opps!! There was an error, Please try again');
     }
   }

@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text('Sign In     ',
                         style: Theme.of(context).textTheme.displayMedium)),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 60),
               CustomTextFormField(
                 validator: (value) {
                   if (value!.trim().isEmpty) {
@@ -120,14 +120,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> login(String email, String password) async {
-    // if (formKey.currentState?.validate() == true) {
-    Response response = await DioHelper.postData(
-        endPoint: EndPoints.login,
-        data: {'password': password, 'Email': email});
-    debugPrint('login page!!!!');
-    Map<String, dynamic> data = response.data;
-    debugPrint(data.toString());
-    user = UserModel.fromJson(data);
+    if (formKey.currentState?.validate() == true) {
+      Response response = await DioHelper.postData(
+          endPoint: EndPoints.login,
+          data: {'password': password, 'Email': email});
+      debugPrint('login page!!!!');
+      Map<String, dynamic> data = response.data;
+      debugPrint(data.toString());
+      user = UserModel.fromJson(data);
+    }
   }
-  // }
 }

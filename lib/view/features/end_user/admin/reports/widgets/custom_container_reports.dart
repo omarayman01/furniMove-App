@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furni_move/model/request_model/request_model.dart';
+import 'package:furni_move/model/request/request.model.dart';
 import 'package:furni_move/model/user_model.dart';
 import 'package:furni_move/view/constants/app_theme.dart';
 import 'package:furni_move/view/core/custom_widgets/avatar.dart';
@@ -22,8 +22,6 @@ class CustomContainerReports extends StatelessWidget {
           // shape: Border.symmetric(),
           elevation: 10,
           backgroundColor: Colors.white.withOpacity(0.8),
-          // backgroundColor: Colors.transparent.withOpacity(0.2),
-
           context: context,
           builder: (_) => ModalBottomSheetOffers(
                 id: request.id.toString(),
@@ -31,8 +29,8 @@ class CustomContainerReports extends StatelessWidget {
               )),
       child: Container(
         height: 130,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: AppTheme.lightGrey.withOpacity(0.3),
@@ -68,7 +66,7 @@ class CustomContainerReports extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     SizedBox(
-                      width: 145,
+                      width: 140,
                       child: Text(
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

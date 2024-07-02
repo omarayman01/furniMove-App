@@ -1,8 +1,12 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:furni_move/view/core/custom_widgets/logo_column.dart';
-import 'package:furni_move/view/features/end_user/service_provider/activity/widgets/serviceprovider_offer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furni_move/view/features/base/views/base_screen.dart';
+import 'package:furni_move/view/features/end_user/service_provider/activity/widgets/serviceprovider_current_offer.dart';
 import 'package:furni_move/view/features/end_user/service_provider/activity/widgets/serviceprovider_offers_listview.dart';
+import 'package:furni_move/view_model/cubits/service_provider_cubits/current_move/current_move_cubit.dart';
+import 'package:furni_move/view_model/cubits/service_provider_cubits/moves_history/moves_history_cubit.dart';
+import 'package:furni_move/view_model/repos/service_provider/serviceprovider_repo_impl.dart';
 
 class ProviderActivityScreen extends StatelessWidget {
   const ProviderActivityScreen({
@@ -11,7 +15,16 @@ class ProviderActivityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) => CurrentMoveCubit(ServiceProviderRepoImpl())
+              ..fetchCurrentMove(user)),
+        BlocProvider(
+            create: (context) => MovesHistoryCubit(ServiceProviderRepoImpl())
+              ..fetchMovesHistory(user)),
+      ],
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('Activity'),
         ),
@@ -21,14 +34,14 @@ class ProviderActivityScreen extends StatelessWidget {
             Expanded(
               child: ContainedTabBarView(
                 tabs: const [
-                  Text('Current Offers'),
+                  Text('Current Move'),
                   Text('Moves History'),
                 ],
                 views: const [
                   Padding(
                     padding: EdgeInsets.only(
-                        top: 50, bottom: 320, right: 20, left: 20),
-                    child: ServiceProviderOffer(),
+                        top: 50, bottom: 275, right: 20, left: 20),
+                    child: ServiceProviderCurrentOffer(),
                   ),
                   ServiceProviderOffersListView(),
                 ],
@@ -36,6 +49,8 @@ class ProviderActivityScreen extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

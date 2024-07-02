@@ -99,6 +99,39 @@ class DioHelper {
     }
   }
 
+  static Future<Response> putData({
+    required String endPoint,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? data,
+    dynamic imgData,
+    String? token,
+    ProgressCallback? onReceiveProgress,
+    bool? img,
+  }) async {
+    try {
+      // dio.options.headers = {};
+      dio.options.headers['Authorization'] = 'Bearer $token';
+      if (img != null) {
+        dio.options.headers['Content-Type'] = 'multipart/form-data';
+      }
+      final Response response = await dio.put(
+        endPoint,
+        data: data ?? imgData,
+        queryParameters: queryParameters,
+        onReceiveProgress: onReceiveProgress,
+      );
+      debugPrint(
+          'put DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // debugPrint(response.data.toString());
+      return response;
+    } catch (e) {
+      debugPrint(
+          'put ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
   static Future<Response> patchData({
     required String endPoint,
     Map<String, dynamic>? queryParameters,
